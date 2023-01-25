@@ -21,6 +21,15 @@ Devemos construir 3 endpoints neste sistema, o cadastro da pessoa, o cadastro de
 * :black_circle: swagger ou postman
 * :books: h2 banco de dados
 
+## Qualidade do código
+1.	Durante a implementação de uma nova funcionalidade de software solicitada, quais critérios você avalia e implementa para garantia de qualidade de software?
+
+Após a implementação de uma nova funcionalidade, podemos utilizar testes funcionais como testes unitários e de integração, para garantir a qualidade do software e dos métodos/funcionalidades implementados. Também deve ser utilizado o conceito de TDD para um maior proveito dos testes.
+
+2. Em qual etapa da implementação você considera a qualidade de software?
+
+A qualidade de software deve ser considerada em todas as etapas de desenvolvimento do software.
+
 
 
 
