@@ -1,9 +1,13 @@
 package com.projeto.gerenciador.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.projeto.gerenciador.entities.Endereco;
+import com.projeto.gerenciador.entities.Pessoa;
 import com.projeto.gerenciador.repository.EnderecoRepository;
+import com.projeto.gerenciador.repository.PessoaRepository;
+import com.projeto.gerenciador.service.exceptions.ResourceNotFoundException;
 import org.hibernate.exception.GenericJDBCException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -18,15 +22,8 @@ public class EnderecoService {
 	
 	@Autowired
 	EnderecoRepository repository;
-	
-	public List buscarTodosEnderecos() {
-		return repository.findAll();
-	}
 
-	public ResponseEntity<?> buscarPorIdDoEndereco(Long id) {
-		return repository.findById(id).map(record -> ResponseEntity.ok().body(record))
-				.orElse(ResponseEntity.notFound().build());
-	}
+
 
 	public ResponseEntity<?> salvarEndereco(Endereco endereco) {
 		try {
@@ -40,31 +37,27 @@ public class EnderecoService {
 		}
 	}
 	
-	public ResponseEntity<?> atualizarEndereco(long id, Endereco endereco){
+	public ResponseEntity<?> atualizarEndereco(long id, Endereco endereco) {
 		try {
 			return repository.findById(id).map(record -> {
 				record.setCep(endereco.getCep());
 				record.setLogradouro(endereco.getLogradouro());
 				record.setNumero(endereco.getNumero());
 				Endereco update = repository.save(record);
-				
+
 				return new ResponseEntity(update, HttpStatus.OK);
 			}).orElse(ResponseEntity.badRequest().body("Não foi possível atualizar o pessoa. Por favor, tente novamente."));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity("Erro não identificado", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
 		
 	}
 
-	public ResponseEntity<?> excluirEndereco(long id) {
-		return repository.findById(id).map(record -> {
-			repository.deleteById(id);
-			return ResponseEntity.ok().body("Pessoa do ID " + id + " foi deletado com sucesso!");
-		}).orElse(ResponseEntity.notFound().build());
-	}
 
 
 
 
-}
+

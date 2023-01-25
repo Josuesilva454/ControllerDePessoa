@@ -31,5 +31,102 @@ Após a implementação de uma nova funcionalidade, podemos utilizar testes func
 A qualidade de software deve ser considerada em todas as etapas de desenvolvimento do software.
 
 
+#Pessoa
+
+Body da requisição:
+{
+"dtNascimento": "string",
+"enderecoList": [
+{
+"cep": "string",
+"idEndereco": 0,
+"logradouro": "string",
+"numero": 0
+}
+],
+"idPessoa": 0,
+"nmPessoa": "string"
+}
+
+
+Get/endereco/{id}/endereco: cria um endereço.
+
+Poder informar qual endereço é o principal da pessoa.
+{
+"idEndereco": 1,
+"cep": "35877-568",
+"logradouro": "Rua Dinora Ferreira Messerder",
+"numero": 125
+}
+
+
+
+
+
+#Endereço
+
+Get/endereco/: cria um endereço.
+
+
+
+POST/endereco/: cria um endereço.
+
+{
+"cep": "32557-560",
+"idEndereco": 0,
+"logradouro": "Rua Dinora Ferreira Messerder",
+"numero": 130,
+"pessoa": {
+"dtNascimento": "04/06/1997",
+"enderecoList": [
+null
+],
+"idPessoa": 0,
+"nmPessoa": "Josue"
+}
+}
+
+Body da requisição:
+
+{
+"idEndereco": 1,
+"cep": "32557-560",
+"logradouro": "Rua Dinora Ferreira Messerder",
+"numero": 130
+}
+
+PUT/endereco/{id}: Editar cria um endereço.
+
+Mode:
+
+{
+"cep": "35877-568",
+"idEndereco": 0,
+"logradouro": "Rua Dinora Ferreira Messerder",
+"numero": 125,
+"pessoa": {
+"dtNascimento": "05/08/1998",
+"enderecoList": [
+null
+],
+"idPessoa": 0,
+"nmPessoa": "lucas"
+}
+}
+
+Response body:
+{
+"idEndereco": 1,
+"cep": "35877-568",
+"logradouro": "Rua Dinora Ferreira Messerder",
+"numero": 125
+}
+
+
+
+
+
+
+
 
 

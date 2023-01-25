@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.projeto.gerenciador.entities.Pessoa;
 
+import java.util.List;
+
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 

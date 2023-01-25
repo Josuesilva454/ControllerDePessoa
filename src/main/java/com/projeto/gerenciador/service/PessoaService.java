@@ -1,50 +1,34 @@
 package com.projeto.gerenciador.service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
+import com.projeto.gerenciador.entities.Endereco;
 import com.projeto.gerenciador.entities.Pessoa;
+import com.projeto.gerenciador.repository.EnderecoRepository;
 import com.projeto.gerenciador.repository.PessoaRepository;
+import com.projeto.gerenciador.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @Service
 public class PessoaService {
 
 	@Autowired
 	private PessoaRepository repository;
+	@Autowired
+	EnderecoRepository enderecoRepository;
 
 
-	public ResponseEntity<?> buscarPorIdDoUsuario(Long id) {
-			Optional<Pessoa> record = this.repository.findById(id);
-
-			if (record.orElseGet(() -> null) != null) {
-				return new ResponseEntity<Pessoa>(record.get(), HttpStatus.OK);
-			} else {
-				return new ResponseEntity<String>("Pessoa não localizado. Tente novamente!", HttpStatus.BAD_REQUEST);
-			}
-		}
-
-	public ResponseEntity<?> buscarTodosUsuarios() {
-		try {
-			Collection<Pessoa> lista = this.repository.findAll();
-			return new ResponseEntity<Collection<Pessoa>>(lista, HttpStatus.OK);
-		} catch (MethodArgumentTypeMismatchException | NumberFormatException e) {
-			e.printStackTrace();
-			return new ResponseEntity<String>(
-					"Não foi possível encontrar os dados. Verifique se o link digitado está correto.",
-					HttpStatus.NOT_FOUND);
-		}
+	public Pessoa postar(Pessoa dto) {
+		repository.save(dto);
+		return dto;
 	}
 
-	public Pessoa salvarUsuario(Pessoa pessoa) {
-		      repository.save(pessoa);
-		return pessoa;
-
-	}
+	//Buscando todos id da pessoa
 
 	public ResponseEntity<?> atualizarUsuario(long id, Pessoa pessoa) {
 		try {
@@ -62,6 +46,22 @@ public class PessoaService {
 		}
 
 	}
+	public Pessoa buscarPorIdDaPessoa(Long id) {
+		Optional<Pessoa> record = this.repository.findById(id);
+		Optional<Pessoa> obj = repository.findById(id);
+		Pessoa entity = obj.orElseThrow(() -> new ResourceNotFoundException("Pessoa não existe"));
+		return entity;
+	}
+	//Buscando todos id da pessoa
+	public List<Pessoa> buscarTodospessoa() {
+			List<Pessoa> list = repository.findAll();
+			return (list);
+		}
+	public Endereco enderecoById(Long id) {
+		Optional<Endereco> obj = enderecoRepository.findById(id);
+		Endereco entity = obj.orElseThrow(() -> new ResourceNotFoundException("Pessoa Não encontrado"));
+		return entity;
+	}
 
 	public ResponseEntity<?> excluirUsuario(long id) {
 		return repository.findById(id).map(record -> {
@@ -71,4 +71,7 @@ public class PessoaService {
 		}).orElse(ResponseEntity.notFound().build());
 	}
 
-}
+	}
+
+
+
