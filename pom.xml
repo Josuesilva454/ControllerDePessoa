@@ -9,11 +9,11 @@
 		<version>2.3.10.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.projetozup</groupId>
-	<artifactId>ProjetoZup</artifactId>
+	<groupId>com.projeto</groupId>
+	<artifactId>Projeto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ProjetoZup</name>
-	<description>Projeto gerado no intuito de criar um cadastro de usuários com seus endereços para a segunda etapa da Orange Talents da Zup Innovation</description>
+	<name>ProjetoPessoa</name>
+	<description>Projeto desenvolvido endereço e pessoa</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -21,6 +21,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -28,7 +28,7 @@ public class EnderecoController {
 		return service.buscarTodosEnderecos();
 	}
 	
-	@GetMapping(value = "{id}")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> buscarPorIdDoEndereco(@PathVariable Long id){
 		return service.buscarPorIdDoEndereco(id);
 	}

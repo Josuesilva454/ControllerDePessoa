@@ -8,8 +8,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -22,6 +24,7 @@ public class testeController {
     @Autowired
     private ObjectMapper objectMapper;
 
+    // Buscando Api do endereço
     @Test
     public void getAllEnderecoAPI() throws Exception {
         mvc.perform(MockMvcRequestBuilders
@@ -31,6 +34,18 @@ public class testeController {
                 .andExpect(status().isOk());
 
     }
+    @Test
+    public void getByIdEnderecoAPI() throws Exception {
+
+    // Retornado Id do endereço/
+     mvc.perform(MockMvcRequestBuilders
+             .get("/endereco/1")
+             .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk());
+    }
+
+    // Testando Api do endereço
     @Test
     public void SaveEnderecoAPI() throws Exception {
 
@@ -52,6 +67,8 @@ public class testeController {
                         .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(endereco)))
                 .andExpect(status().isOk());
+
+
 
 
     }
