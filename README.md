@@ -1,5 +1,5 @@
 
-# API REST para controle de uma lista de endereços por usuário
+# API REST para controle de uma lista de endereços por pessoa
 
 ## Objetivo
 
@@ -7,7 +7,7 @@
 
 * **Segundo passo** é criar um cadastro de endereços, sendo obrigatório dados mínimos para cadastro como: logradouro, número e CEP, associando este endereço da pessoa.
 
-* **Terceiro passo** é criar um endpoint que retornará um usuário com a lista de todos seus endereços cadastrados.
+* **Terceiro passo** é criar um endpoint que retornará uma pessoa com a lista de todos seus endereços cadastrados.
 
 Devemos construir 3 endpoints neste sistema, o cadastro da pessoa, o cadastro de endereços e a listagem dos endereços de uma pessoa específico.
 \- Caso os cadastros estejam corretos, **é necessário** voltar o Status 201, caso haja erros de preenchimento de dados, o Status deve ser 400.
@@ -31,7 +31,7 @@ Após a implementação de uma nova funcionalidade, podemos utilizar testes func
 A qualidade de software deve ser considerada em todas as etapas de desenvolvimento do software.
 
 
-###Pessoa
+### Pessoa
 1. Criar uma pessoa:
 
 POST/pessoa: criar pessoa.
@@ -105,72 +105,51 @@ Poder informar qual endereço é o principal da pessoa.
 }
 ```
 
+### Endereço
 
-
-
-###Endereço
-
-Get/endereco/: cria um endereço.
-
-
+Criar endereço para a pessoa
 
 POST/endereco/: cria um endereço.
 ```json
 
-{
-"cep": "32557-560",
-"idEndereco": 0,
-"logradouro": "Rua Dinora Ferreira Messerder",
-"numero": 130,
-"pessoa": {
-"dtNascimento": "04/06/1997",
-"enderecoList": [
-null
-],
-"idPessoa": 0,
-"nmPessoa": "Josue"
-}
-}
+[
+  {
+    "idEndereco": 1,
+    "cep": "31515-580",
+    "logradouro": "046/06/1997",
+    "numero": 156
+  }
+]
 ```
 Body da requisição:
 
 ```json
-{
-"idEndereco": 1,
-"cep": "32557-560",
-"logradouro": "Rua Dinora Ferreira Messerder",
-"numero": 130
-}
-```
-PUT/endereco/{id}: Editar cria um endereço.
+[
+  {
+    "idEndereco": 1,
+    "cep": "31515-580",
+    "logradouro": "046/06/1997",
+    "numero": 156
+  }
+]
 
-Editando:
 
-```json
-{
-"cep": "35877-568",
-"idEndereco": 0,
-"logradouro": "Rua Dinora Ferreira Messerder",
-"numero": 125,
-"pessoa": {
-"dtNascimento": "05/08/1998",
-"enderecoList": [
-null
-],
-"idPessoa": 0,
-"nmPessoa": "lucas"
-}
-}
 ```
 
+Listar endereço da pessoa.
+
+Get/endereco/: Listar endereço da pessoa
+
+
 ```json
-Response body:
-{
-"idEndereco": 1,
-"cep": "35877-568",
-"logradouro": "Rua Dinora Ferreira Messerder",
-"numero": 125
-}
+[
+  {
+    "idEndereco": 1,
+    "cep": "31515-580",
+    "logradouro": "046/06/1997",
+    "numero": 156
+  }
+]
 ```
 
 

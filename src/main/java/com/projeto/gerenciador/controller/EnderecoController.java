@@ -25,10 +25,10 @@ public class EnderecoController {
 		return service.salvarEndereco(endereco);
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@PutMapping(value = "{id}")
-	public ResponseEntity<?> atualizarEndereco(@PathVariable long id, @RequestBody Endereco endereco){
-		return service.atualizarEndereco(id, endereco);
+	@GetMapping
+	public ResponseEntity<List<Endereco>> findAll() {
+		List<Endereco> list = service.findAll();
+		return ResponseEntity.ok().body(list);
 	}
 
 

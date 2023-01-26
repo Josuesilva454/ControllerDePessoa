@@ -36,25 +36,13 @@ public class EnderecoService {
 					HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	public ResponseEntity<?> atualizarEndereco(long id, Endereco endereco) {
-		try {
-			return repository.findById(id).map(record -> {
-				record.setCep(endereco.getCep());
-				record.setLogradouro(endereco.getLogradouro());
-				record.setNumero(endereco.getNumero());
-				Endereco update = repository.save(record);
 
-				return new ResponseEntity(update, HttpStatus.OK);
-			}).orElse(ResponseEntity.badRequest().body("Não foi possível atualizar o pessoa. Por favor, tente novamente."));
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity("Erro não identificado", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	public List<Endereco> findAll() {
+		List<Endereco> list = repository.findAll();
+		return (list);
+	}
 	}
 
-		
-	}
 
 
 
