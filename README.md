@@ -31,45 +31,91 @@ Após a implementação de uma nova funcionalidade, podemos utilizar testes func
 A qualidade de software deve ser considerada em todas as etapas de desenvolvimento do software.
 
 
-#Pessoa
+###Pessoa
+1. Criar uma pessoa:
 
+POST/pessoa: criar pessoa.
 Body da requisição:
+```json
 {
-"dtNascimento": "string",
-"enderecoList": [
+  "idPessoa": 0,
+  "nmPessoa": "samuel",
+  "dtNascimento": "04/05/1996",
+  "enderecoList": [
+  ]
+}
+```
+2. Editar uma pessoa
+
+Get/pessoa/{id}: cria um endereço.
+Body da requisição:
+```json
 {
-"cep": "string",
-"idEndereco": 0,
-"logradouro": "string",
-"numero": 0
+  "idPessoa": 1,
+  "nmPessoa": "josue",
+  "dtNascimento": "04/06/1997",
+  "enderecoList": [
+  ]
 }
-],
-"idPessoa": 0,
-"nmPessoa": "string"
-}
+```
+3. Listar uma pessoa:
+
+Get/endereco/: cria um endereço.
+Body da requisição:
+```json
+[
+  {
+    "idPessoa": 1,
+    "nmPessoa": "samuel",
+    "dtNascimento": "04/05/1996",
+    "enderecoList": [
+    ]
+  }
+]
+```
+
+Listar pessoas
+
+4. Listar pessoa:
+
+Get/endereco/: cria um endereço.
+Body da requisição:
+```json
+[
+  {
+    "idPessoa": 1,
+    "nmPessoa": "josue",
+    "dtNascimento": "04/06/1997",
+    "enderecoList": [
+    ]
+  }
+]
+```
 
 
 Get/endereco/{id}/endereco: cria um endereço.
 
 Poder informar qual endereço é o principal da pessoa.
+```json
 {
 "idEndereco": 1,
 "cep": "35877-568",
 "logradouro": "Rua Dinora Ferreira Messerder",
 "numero": 125
 }
+```
 
 
 
 
-
-#Endereço
+###Endereço
 
 Get/endereco/: cria um endereço.
 
 
 
 POST/endereco/: cria um endereço.
+```json
 
 {
 "cep": "32557-560",
@@ -85,20 +131,22 @@ null
 "nmPessoa": "Josue"
 }
 }
-
+```
 Body da requisição:
 
+```json
 {
 "idEndereco": 1,
 "cep": "32557-560",
 "logradouro": "Rua Dinora Ferreira Messerder",
 "numero": 130
 }
-
+```
 PUT/endereco/{id}: Editar cria um endereço.
 
-Mode:
+Editando:
 
+```json
 {
 "cep": "35877-568",
 "idEndereco": 0,
@@ -113,7 +161,9 @@ null
 "nmPessoa": "lucas"
 }
 }
+```
 
+```json
 Response body:
 {
 "idEndereco": 1,
@@ -121,7 +171,7 @@ Response body:
 "logradouro": "Rua Dinora Ferreira Messerder",
 "numero": 125
 }
-
+```
 
 
 
