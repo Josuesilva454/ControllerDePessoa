@@ -28,8 +28,8 @@ public class PeopleController {
     }
     @PutMapping(value = "/{id}")
     public ResponseEntity<PeopleDTO> update(@PathVariable Long id, @RequestBody @Valid PeopleDTO dto) {
-        PeopleDTO peopleDto = service.update(id, dto);
-        return ResponseEntity.ok().body(peopleDto);
+         service.update(id, dto);
+        return ResponseEntity.ok(dto);
     }
 
     @GetMapping()

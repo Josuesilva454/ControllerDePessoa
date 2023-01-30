@@ -1,5 +1,6 @@
 package com.gerenciador.pessoa.services;
 
+import com.gerenciador.pessoa.entities.Address;
 import com.gerenciador.pessoa.entities.People;
 import com.gerenciador.pessoa.dtos.PeopleDTO;
 import com.gerenciador.pessoa.exceptions.ResourceNotFoundException;
@@ -8,7 +9,6 @@ import com.gerenciador.pessoa.repository.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -35,10 +35,11 @@ public class PeopleService {
             People entity = mapper.dtoToEntity(dto);
             repository.save(entity);
             return mapper.entityToDTO(entity);
-        } catch (EntityNotFoundException err) {
+        } catch (ResourceNotFoundException err) {
             throw new ResourceNotFoundException("Id não existem: " + id);
         }
     }
+
 
     public List<PeopleDTO> findAll() {
         List<People> list = repository.findAll();

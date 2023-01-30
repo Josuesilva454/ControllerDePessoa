@@ -34,60 +34,48 @@ A qualidade de software deve ser considerada em todas as etapas de desenvolvimen
 ### Pessoa
 1. Criar uma pessoa:
 
-POST/pessoa: criar pessoa.
+POST/api/pessoa
 Body da requisição:
 ```json
 {
-  "idPessoa": 0,
-  "nmPessoa": "samuel",
-  "dtNascimento": "04/05/1996",
-  "enderecoList": [
-  ]
+  "id": 0,
+  "name": "lucas",
+  "birthDate": "1996-05-09"
 }
 ```
-2. Editar uma pessoa
+2. Editar uma pessoa:
 
-Get/pessoa/{id}: cria um endereço.
+Put/api/pessoa/1
 Body da requisição:
 ```json
 {
-  "idPessoa": 1,
-  "nmPessoa": "josue",
-  "dtNascimento": "04/06/1997",
-  "enderecoList": [
-  ]
+  "id": 1,
+  "name": "João Vitor",
+  "birthDate": "1998-04-08"
 }
 ```
-3. Listar uma pessoa:
+3. Consultar  pessoa:
 
-Get/endereco/: cria um endereço.
+Get/api/pessoa/1
+Body da requisição:
+```json
+{
+  "id": 1,
+  "name": "João Vitor",
+  "birthDate": "1998-04-08"
+}
+```
+
+4. Listar todas pessoa:
+
+Get/api/pessoa
 Body da requisição:
 ```json
 [
   {
-    "idPessoa": 1,
-    "nmPessoa": "samuel",
-    "dtNascimento": "04/05/1996",
-    "enderecoList": [
-    ]
-  }
-]
-```
-
-Listar pessoas
-
-4. Listar pessoa:
-
-Get/endereco/: cria um endereço.
-Body da requisição:
-```json
-[
-  {
-    "idPessoa": 1,
-    "nmPessoa": "josue",
-    "dtNascimento": "04/06/1997",
-    "enderecoList": [
-    ]
+    "id": 1,
+    "name": "João Vitor",
+    "birthDate": "1998-04-08"
   }
 ]
 ```
@@ -109,47 +97,54 @@ Poder informar qual endereço é o principal da pessoa.
 
 Criar endereço para a pessoa
 
-POST/endereco/: cria um endereço.
-```json
+POST/api/endereco?peopleId=1 
 
-[
-  {
-    "idEndereco": 1,
-    "cep": "31515-580",
-    "logradouro": "046/06/1997",
-    "numero": 156
-  }
-]
-```
 Body da requisição:
 
 ```json
-[
-  {
-    "idEndereco": 1,
-    "cep": "31515-580",
-    "logradouro": "046/06/1997",
-    "numero": 156
+{
+  "id": 0,
+  "people": {
+    "id": 1,
+    "name": "João Vitor",
+    "birthDate": "1998-04-08",
+    "addresses": [
+      {
+        "id": 1,
+        "logradouro": "Rua Dinorah Ferreira Messeder",
+        "number": 125,
+        "main": false,
+        "cep": "32568-325"
+      }
+    ]
   }
-]
-
-
+}
 ```
 
-Listar endereço da pessoa.
 
-Get/endereco/: Listar endereço da pessoa
+Informar endereço da pessoa.
+
+POST/api/principal?addressId=1
 
 
 ```json
-[
-  {
-    "idEndereco": 1,
-    "cep": "31515-580",
-    "logradouro": "046/06/1997",
-    "numero": 156
+{
+  "id": 1,
+  "people": {
+    "id": 1,
+    "name": "João Vitor",
+    "birthDate": "1998-04-08",
+    "addresses": [
+      {
+        "id": 1,
+        "logradouro": "Rua Dinorah Ferreira Messeder",
+        "number": 125,
+        "main": true,
+        "cep": "32568-325"
+      }
+    ]
   }
-]
+}
 ```
 
 
