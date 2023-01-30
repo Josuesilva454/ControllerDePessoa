@@ -1,0 +1,25 @@
+package com.gerenciador.pessoa.dtos;
+
+
+import com.gerenciador.pessoa.entities.Address;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+public class PeopleAddressesDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private Set<Address> addresses = new HashSet<>();
+
+    public PeopleAddressesDTO() {
+    }
+
+    public Set<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Set<Address> addresses) {
+        this.addresses = addresses;
+    }
+}
